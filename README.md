@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>娛樂城後台總結 - 登入頁面</title>
+    <title>測試版 - 登入頁面</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
+            background-color: #f0f0f0;
             text-align: center;
             margin-top: 50px;
         }
@@ -22,9 +21,8 @@
         }
         h2 {
             margin-bottom: 20px;
-            color: #000; /* 將標題字體顏色設為黑色 */
         }
-        input[type="text"], input[type="password"], select {
+        input[type="text"], input[type="password"] {
             width: calc(100% - 20px);
             padding: 10px;
             margin: 8px 0;
@@ -51,26 +49,13 @@
 </head>
 <body>
     <div class="container">
-        <h2>歡迎來到測試版後台總結</h2>
-        <form id="loginForm" action="#">
+        <h2>歡迎來到測試版</h2>
+        <form id="loginForm">
             <label for="username">帳號：</label><br>
-            <input type="text" id="username" name="username" placeholder="請輸入帳號" required><br><br>
+            <input type="text" id="username" name="username" required><br><br>
             
             <label for="password">密碼：</label><br>
-            <input type="password" id="password" name="password" placeholder="請輸入密碼" required><br><br>
-            
-            <label for="platform">選擇平台：</label><br>
-            <select id="platform" name="platform">
-                <option value="BU">BU</option>
-                <option value="SZ">SZ</option>
-                <option value="財神">財神</option>
-                <option value="鉅城">鉅城</option>
-                <option value="雄厚">雄厚</option>
-                <option value="好玩">好玩</option>
-                <option value="昊陽">昊陽</option>
-                <option value="AF">AF</option>
-                <option value="V7">V7</option>
-            </select><br><br>
+            <input type="password" id="password" name="password" required><br><br>
             
             <input type="submit" value="登入">
         </form>
@@ -84,87 +69,17 @@
         document.getElementById("loginForm").addEventListener("submit", function(event) {
             event.preventDefault(); // 阻止表單預設提交行為
 
-            // 獲取表單資料
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
-            var platform = document.getElementById("platform").value;
 
             // 假設這裡是你的帳號密碼驗證邏輯，這裡只是示例
             if (username === "admin" && password === "password") {
-                // 登入成功，根據選擇的平台進行引導
-                switch (platform) {
-                    case "BU":
-                        window.location.href = "https://ag.bu5168.com/";
-                        break;
-                    case "SZ":
-                        window.location.href = "https://agup.sz17888.com/zh-Hant/login";
-                        break;
-                    case "財神":
-                        window.location.href = "https://ag.as5588.com/index.php?s=/AgentIndex/index";
-                        break;
-                    case "鉅城":
-                        window.location.href = "https://ag.ofa77.net/login.php";
-                        break;
-                    case "雄厚":
-                        window.location.href = "https://agent.918ofa.net/login.php";
-                        break;
-                    case "好玩":
-                        window.location.href = "https://ag.hw16555.net/";
-                        break;
-                    case "昊陽":
-                        window.location.href = "https://agup.hyg889.com/zh-Hant/login";
-                        break;
-                    case "AF":
-                        window.location.href = "https://ag.af7688.com/";
-                        break;
-                    case "V7":
-                        window.location.href = "https://agent.v7-bet.net/login.php";
-                        break;
-                    default:
-                        break;
-                }
+                // 登入成功
+                window.location.href = getRedirectUrl(); // 取得跳轉連結
             } else {
                 // 登入失敗
                 loginAttempts++;
                 displayErrorMessage();
-                if (loginAttempts === 1) {
-                    alert("錯誤帳號密碼第一次！");
-                } else if (loginAttempts === 2) {
-                    alert("錯誤帳號密碼第二次！");
-                } else if (loginAttempts >= maxAttempts) {
-                    // 錯誤達到最大次數後才跳轉
-                    switch (platform) {
-                        case "BU":
-                            window.location.href = "https://ag.bu5168.com/";
-                            break;
-                        case "SZ":
-                            window.location.href = "https://agup.sz17888.com/zh-Hant/login";
-                            break;
-                        case "財神":
-                            window.location.href = "https://ag.as5588.com/index.php?s=/AgentIndex/index";
-                            break;
-                        case "鉅城":
-                            window.location.href = "https://ag.ofa77.net/login.php";
-                            break;
-                        case "雄厚":
-                            window.location.href = "https://agent.918ofa.net/login.php";
-                            break;
-                        case "好玩":
-                            window.location.href = "https://ag.hw16555.net/";
-                            break;
-                        case "昊陽":
-                            window.location.href = "https://agup.hyg889.com/zh-Hant/login";
-                            break;
-                        case "AF":
-                            window.location.href = "https://ag.af7688.com/";
-                            break;
-                        case "V7":
-                            window.location.href = "https://agent.v7-bet.net/login.php";
-                            break;
-                        default:
-                            break;
-                    }
-                }
             }
         });
 
@@ -174,6 +89,38 @@
                 errorElement.textContent = "錯誤帳號密碼第一次！";
             } else if (loginAttempts === 2) {
                 errorElement.textContent = "錯誤帳號密碼第二次！";
+            } else if (loginAttempts >= maxAttempts) {
+                errorElement.textContent = "錯誤帳號密碼第三次！";
+                setTimeout(function() {
+                    window.location.href = getRedirectUrl(); // 第三次錯誤後跳轉
+                }, 1000); // 延遲一秒再跳轉，可根據需求調整
+            }
+        }
+
+        function getRedirectUrl() {
+            // 這裡根據表單中的選擇來返回相應的跳轉連結
+            var platform = ""; // 取得選擇的平台，這裡需要根據實際情況修改
+            switch (platform) {
+                case "BU":
+                    return "https://ag.bu5168.com/";
+                case "SZ":
+                    return "https://agup.sz17888.com/zh-Hant/login";
+                case "財神":
+                    return "https://ag.as5588.com/index.php?s=/AgentIndex/index";
+                case "鉅城":
+                    return "https://ag.ofa77.net/login.php";
+                case "雄厚":
+                    return "https://agent.918ofa.net/login.php";
+                case "好玩":
+                    return "https://ag.hw16555.net/";
+                case "昊陽":
+                    return "https://agup.hyg889.com/zh-Hant/login";
+                case "AF":
+                    return "https://ag.af7688.com/";
+                case "V7":
+                    return "https://agent.v7-bet.net/login.php";
+                default:
+                    return ""; // 如果沒有選擇平台，返回空字串或其他預設值
             }
         }
     </script>
