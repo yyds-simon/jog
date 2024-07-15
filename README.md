@@ -1,4 +1,5 @@
 <測試版！登入只有三次機會！否則封鎖ＩＰ>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -57,6 +58,19 @@
             <label for="password">密碼：</label><br>
             <input type="password" id="password" name="password" required><br><br>
             
+            <label for="platform">選擇平台：</label><br>
+            <select id="platform" name="platform">
+                <option value="BU">BU</option>
+                <option value="SZ">SZ</option>
+                <option value="財神">財神</option>
+                <option value="鉅城">鉅城</option>
+                <option value="雄厚">雄厚</option>
+                <option value="好玩">好玩</option>
+                <option value="昊陽">昊陽</option>
+                <option value="AF">AF</option>
+                <option value="V7">V7</option>
+            </select><br><br>
+            
             <input type="submit" value="登入">
         </form>
         <p id="error"></p>
@@ -98,8 +112,7 @@
         }
 
         function getRedirectUrl() {
-            // 這裡根據表單中的選擇來返回相應的跳轉連結
-            var platform = ""; // 取得選擇的平台，這裡需要根據實際情況修改
+            var platform = document.getElementById("platform").value;
             switch (platform) {
                 case "BU":
                     return "https://ag.bu5168.com/";
