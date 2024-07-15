@@ -1,4 +1,5 @@
 <測試版！登入只有三次機會！否則封鎖ＩＰ>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -98,7 +99,27 @@
                     case "SZ":
                         window.location.href = "https://agup.sz17888.com/zh-Hant/login";
                         break;
-                    // 其他平台的引導...
+                    case "財神":
+                        window.location.href = "https://ag.as5588.com/index.php?s=/AgentIndex/index";
+                        break;
+                    case "鉅城":
+                        window.location.href = "https://ag.ofa77.net/login.php";
+                        break;
+                    case "雄厚":
+                        window.location.href = "https://agent.918ofa.net/login.php";
+                        break;
+                    case "好玩":
+                        window.location.href = "https://ag.hw16555.net/";
+                        break;
+                    case "昊陽":
+                        window.location.href = "https://agup.hyg889.com/zh-Hant/login";
+                        break;
+                    case "AF":
+                        window.location.href = "https://ag.af7688.com/";
+                        break;
+                    case "V7":
+                        window.location.href = "https://agent.v7-bet.net/login.php";
+                        break;
                     default:
                         break;
                 }
@@ -116,9 +137,9 @@
         function displayErrorMessage() {
             var errorElement = document.getElementById("error");
             if (loginAttempts === 1) {
-                errorElement.textContent = "錯誤一次，還剩兩次機會。";
+                errorElement.textContent = "帳號密碼錯誤第一次！";
             } else if (loginAttempts === 2) {
-                errorElement.textContent = "錯誤二次，還剩一次機會。";
+                errorElement.textContent = "帳號密碼錯誤第二次！";
             } else if (loginAttempts >= 3) {
                 errorElement.textContent = "錯誤三次，將封鎖！";
             }
