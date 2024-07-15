@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -51,7 +50,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>歡迎使用娛樂城後台查詢</h2>
+        <h2>歡迎來到測試版後台總結</h2>
         <form id="loginForm" action="#">
             <label for="username">帳號：</label><br>
             <input type="text" id="username" name="username" placeholder="請輸入帳號" required><br><br>
