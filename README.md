@@ -80,6 +80,7 @@
 
     <script>
         var loginAttempts = 0; // 登入嘗試次數計數器
+        var maxAttempts = 3; // 最大允許的錯誤次數
 
         document.getElementById("loginForm").addEventListener("submit", function(event) {
             event.preventDefault(); // 阻止表單預設提交行為
@@ -127,9 +128,9 @@
                 // 登入失敗
                 loginAttempts++;
                 displayErrorMessage();
-                if (loginAttempts >= 3) {
-                    // 錯誤三次將封鎖
-                    document.getElementById("loginForm").removeEventListener("submit", handleSubmit);
+                if (loginAttempts >= maxAttempts) {
+                    // 錯誤達到最大次數後顯示封鎖訊息
+                    alert("錯誤三次，將封鎖！");
                 }
             }
         });
@@ -140,8 +141,6 @@
                 errorElement.textContent = "帳號密碼錯誤第一次！";
             } else if (loginAttempts === 2) {
                 errorElement.textContent = "帳號密碼錯誤第二次！";
-            } else if (loginAttempts >= 3) {
-                errorElement.textContent = "錯誤三次，將封鎖！";
             }
         }
     </script>
