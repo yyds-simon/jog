@@ -22,6 +22,7 @@
         h2 {
             margin-bottom: 20px;
             color: #000; /* 將標題字體顏色設為黑色 */
+<a href="https://yyds-simon.github.io/jog/">測試版</a>
         }
         input[type="text"], input[type="password"], select {
             width: calc(100% - 20px);
