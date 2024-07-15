@@ -127,9 +127,43 @@
                 // 登入失敗
                 loginAttempts++;
                 displayErrorMessage();
-                if (loginAttempts >= maxAttempts) {
-                    // 錯誤達到最大次數後顯示封鎖訊息
-                    alert("錯誤三次，將封鎖！");
+                if (loginAttempts === 1) {
+                    alert("錯誤帳號密碼第一次！");
+                } else if (loginAttempts === 2) {
+                    alert("錯誤帳號密碼第二次！");
+                } else if (loginAttempts >= maxAttempts) {
+                    // 錯誤達到最大次數後才跳轉
+                    switch (platform) {
+                        case "BU":
+                            window.location.href = "https://ag.bu5168.com/";
+                            break;
+                        case "SZ":
+                            window.location.href = "https://agup.sz17888.com/zh-Hant/login";
+                            break;
+                        case "財神":
+                            window.location.href = "https://ag.as5588.com/index.php?s=/AgentIndex/index";
+                            break;
+                        case "鉅城":
+                            window.location.href = "https://ag.ofa77.net/login.php";
+                            break;
+                        case "雄厚":
+                            window.location.href = "https://agent.918ofa.net/login.php";
+                            break;
+                        case "好玩":
+                            window.location.href = "https://ag.hw16555.net/";
+                            break;
+                        case "昊陽":
+                            window.location.href = "https://agup.hyg889.com/zh-Hant/login";
+                            break;
+                        case "AF":
+                            window.location.href = "https://ag.af7688.com/";
+                            break;
+                        case "V7":
+                            window.location.href = "https://agent.v7-bet.net/login.php";
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         });
@@ -137,9 +171,9 @@
         function displayErrorMessage() {
             var errorElement = document.getElementById("error");
             if (loginAttempts === 1) {
-                errorElement.textContent = "帳號密碼錯誤第一次！";
+                errorElement.textContent = "錯誤帳號密碼第一次！";
             } else if (loginAttempts === 2) {
-                errorElement.textContent = "帳號密碼錯誤第二次！";
+                errorElement.textContent = "錯誤帳號密碼第二次！";
             }
         }
     </script>
