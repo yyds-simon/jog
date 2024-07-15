@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -21,6 +22,7 @@
         }
         h2 {
             margin-bottom: 20px;
+            color: #000; /* 將標題字體顏色設為黑色 */
         }
         input[type="text"], input[type="password"], select {
             width: calc(100% - 20px);
@@ -49,7 +51,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>歡迎來到娛樂城後台總結</h2>
+        <h2>歡迎來到神奇資料後台總結</h2>
         <form id="loginForm" action="#">
             <label for="username">帳號：</label><br>
             <input type="text" id="username" name="username" placeholder="請輸入帳號" required><br><br>
