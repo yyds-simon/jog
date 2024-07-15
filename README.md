@@ -52,15 +52,14 @@
     <div class="container">
         <h2>歡迎來到娛樂城後台總結</h2>
         <form id="loginForm" action="#">
-            <label for="username">使用者名稱：</label><br>
-            <input type="text" id="username" name="username" required><br><br>
+            <label for="username">帳號：</label><br>
+            <input type="text" id="username" name="username" placeholder="請輸入帳號" required><br><br>
             
             <label for="password">密碼：</label><br>
-            <input type="password" id="password" name="password" required><br><br>
+            <input type="password" id="password" name="password" placeholder="請輸入密碼" required><br><br>
             
             <label for="platform">選擇平台：</label><br>
             <select id="platform" name="platform">
-                <option value="jg">JG</option>
                 <option value="3a">3A</option>
                 <option value="bcr">BCR</option>
             </select><br><br>
@@ -80,9 +79,6 @@
 
             // 根據選擇的平台進行不同的引導
             switch (platform) {
-                case "jg":
-                    window.location.href = "https://your-username.github.io/my-login-page/";
-                    break;
                 case "3a":
                     window.location.href = "https://agent.aaa1788.com/";
                     break;
