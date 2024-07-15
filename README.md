@@ -137,3 +137,15 @@
     </div>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>娛樂城後台總結</title>
+</head>
+<body>
+    <h1>歡迎來到娛樂城後台總結</h1>
+    <p>這裡是娛樂城後台總結的網頁內容。</p>
+</body>
+</html>
