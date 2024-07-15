@@ -7,7 +7,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #000;
+            color: #fff;
             text-align: center;
             margin-top: 50px;
         }
@@ -22,7 +23,7 @@
         h2 {
             margin-bottom: 20px;
         }
-        input[type="text"], input[type="password"] {
+        input[type="text"], input[type="password"], select {
             width: calc(100% - 20px);
             padding: 10px;
             margin: 8px 0;
@@ -57,8 +58,41 @@
             <label for="password">密碼：</label><br>
             <input type="password" id="password" name="password" required><br><br>
             
+            <label for="platform">選擇平台：</label><br>
+            <select id="platform" name="platform">
+                <option value="jg">JG</option>
+                <option value="3a">3A</option>
+                <option value="bcr">BCR</option>
+            </select><br><br>
+            
             <input type="submit" value="登入">
         </form>
     </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // 阻止表單預設提交行為
+
+            // 獲取表單資料
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var platform = document.getElementById("platform").value;
+
+            // 根據選擇的平台進行不同的引導
+            switch (platform) {
+                case "jg":
+                    window.location.href = "https://your-username.github.io/my-login-page/";
+                    break;
+                case "3a":
+                    window.location.href = "https://agent.aaa1788.com/";
+                    break;
+                case "bcr":
+                    window.location.href = "https://ag.bcr56899.com/";
+                    break;
+                default:
+                    break;
+            }
+        });
+    </script>
 </body>
 </html>
