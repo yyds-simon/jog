@@ -8,7 +8,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #000;
+            color: #fff;
             text-align: center;
             margin-top: 50px;
         }
@@ -16,14 +17,14 @@
             max-width: 400px;
             margin: auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
         h2 {
             margin-bottom: 20px;
         }
-        input[type="text"], input[type="password"] {
+        input[type="text"], input[type="password"], select {
             width: calc(100% - 20px);
             padding: 10px;
             margin: 8px 0;
@@ -31,6 +32,8 @@
             border-radius: 4px;
             box-sizing: border-box;
             font-size: 16px;
+            background-color: #f0f0f0;
+            color: #333;
         }
         input[type="submit"] {
             width: 100%;
@@ -45,6 +48,11 @@
         }
         input[type="submit"]:hover {
             background-color: #45a049;
+        }
+        #error {
+            color: #ff0000;
+            font-size: 14px;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -86,56 +94,28 @@
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
 
-            // 假設這裡是你的帳號密碼驗證邏輯，這裡只是示例
-            if (username === "admin" && password === "password") {
-                // 登入成功
-                window.location.href = getRedirectUrl(); // 取得跳轉連結
-            } else {
-                // 登入失敗
-                loginAttempts++;
-                displayErrorMessage();
-            }
+            // 不做實際帳密驗證，直接跳轉
+            redirectToLink();
         });
 
-        function displayErrorMessage() {
-            var errorElement = document.getElementById("error");
-            if (loginAttempts === 1) {
-                errorElement.textContent = "錯誤帳號密碼第一次！";
-            } else if (loginAttempts === 2) {
-                errorElement.textContent = "錯誤帳號密碼第二次！";
-            } else if (loginAttempts >= maxAttempts) {
-                errorElement.textContent = "錯誤帳號密碼第三次！";
-                setTimeout(function() {
-                    window.location.href = getRedirectUrl(); // 第三次錯誤後跳轉
-                }, 1000); // 延遲一秒再跳轉，可根據需求調整
-            }
-        }
-
-        function getRedirectUrl() {
+        function redirectToLink() {
             var platform = document.getElementById("platform").value;
             switch (platform) {
                 case "BU":
-                    return "https://ag.bu5168.com/";
+                    window.location.href = "https://ag.bu5168.com/";
+                    break;
                 case "SZ":
-                    return "https://agup.sz17888.com/zh-Hant/login";
+                    window.location.href = "https://agup.sz17888.com/zh-Hant/login";
+                    break;
                 case "財神":
-                    return "https://ag.as5588.com/index.php?s=/AgentIndex/index";
+                    window.location.href = "https://ag.as5588.com/index.php?s=/AgentIndex/index";
+                    break;
                 case "鉅城":
-                    return "https://ag.ofa77.net/login.php";
+                    window.location.href = "https://ag.ofa77.net/login.php";
+                    break;
                 case "雄厚":
-                    return "https://agent.918ofa.net/login.php";
+                    window.location.href = "https://agent.918ofa.net/login.php";
+                    break;
                 case "好玩":
-                    return "https://ag.hw16555.net/";
-                case "昊陽":
-                    return "https://agup.hyg889.com/zh-Hant/login";
-                case "AF":
-                    return "https://ag.af7688.com/";
-                case "V7":
-                    return "https://agent.v7-bet.net/login.php";
-                default:
-                    return ""; // 如果沒有選擇平台，返回空字串或其他預設值
-            }
-        }
-    </script>
-</body>
-</html>
+                    window.location.href = "https://ag.hw16555.net/";
+                   
