@@ -1,4 +1,4 @@
-<測試版>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -52,7 +52,7 @@
 <body>
     <div class="container">
         <h2>歡迎來到測試版後台總結</h2>
-             <form id="loginForm" action="#">
+        <form id="loginForm" action="#">
             <label for="username">帳號：</label><br>
             <input type="text" id="username" name="username" placeholder="請輸入帳號" required><br><br>
             
@@ -74,11 +74,11 @@
             
             <input type="submit" value="登入">
         </form>
+        <p id="error"></p>
     </div>
 
     <script>
-        // 初始設置，第一次登入帳密錯誤
-        var firstAttempt = true;
+        var loginAttempts = 0; // 登入嘗試次數計數器
 
         document.getElementById("loginForm").addEventListener("submit", function(event) {
             event.preventDefault(); // 阻止表單預設提交行為
@@ -88,47 +88,41 @@
             var password = document.getElementById("password").value;
             var platform = document.getElementById("platform").value;
 
-            // 驗證帳密
-            if (firstAttempt) {
-                // 第一次登入一律顯示帳密錯誤
-                alert("帳號或密碼錯誤！");
-                firstAttempt = false;
-                return;
-            }
-
-            // 根據選擇的平台進行不同的引導
-            switch (platform) {
-                case "BU":
-                    window.location.href = "https://ag.bu5168.com/";
-                    break;
-                case "SZ":
-                    window.location.href = "https://agup.sz17888.com/zh-Hant/login";
-                    break;
-                case "財神":
-                    window.location.href = "https://ag.as5588.com/index.php?s=/AgentIndex/index";
-                    break;
-                case "鉅城":
-                    window.location.href = "https://ag.ofa77.net/login.php";
-                    break;
-                case "雄厚":
-                    window.location.href = "https://agent.918ofa.net/login.php";
-                    break;
-                case "好玩":
-                    window.location.href = "https://ag.hw16555.net/";
-                    break;
-                case "昊陽":
-                    window.location.href = "https://agup.hyg889.com/zh-Hant/login";
-                    break;
-                case "AF":
-                    window.location.href = "https://ag.af7688.com/";
-                    break;
-                case "V7":
-                    window.location.href = "https://agent.v7-bet.net/login.php";
-                    break;
-                default:
-                    break;
+            // 假設這裡是你的帳號密碼驗證邏輯，這裡只是示例
+            if (username === "admin" && password === "password") {
+                // 登入成功，根據選擇的平台進行引導
+                switch (platform) {
+                    case "BU":
+                        window.location.href = "https://ag.bu5168.com/";
+                        break;
+                    case "SZ":
+                        window.location.href = "https://agup.sz17888.com/zh-Hant/login";
+                        break;
+                    // 其他平台的引導...
+                    default:
+                        break;
+                }
+            } else {
+                // 登入失敗
+                loginAttempts++;
+                displayErrorMessage();
+                if (loginAttempts >= 3) {
+                    // 錯誤三次將封鎖
+                    document.getElementById("loginForm").removeEventListener("submit", handleSubmit);
+                }
             }
         });
+
+        function displayErrorMessage() {
+            var errorElement = document.getElementById("error");
+            if (loginAttempts === 1) {
+                errorElement.textContent = "錯誤一次，還剩兩次機會。";
+            } else if (loginAttempts === 2) {
+                errorElement.textContent = "錯誤二次，還剩一次機會。";
+            } else if (loginAttempts >= 3) {
+                errorElement.textContent = "錯誤三次，將封鎖！";
+            }
+        }
     </script>
 </body>
 </html>
