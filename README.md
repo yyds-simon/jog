@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<測試版！登入只有三次機會！否則封鎖ＩＰ>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
