@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>娛樂城後台總結 - 登入頁面</title>
+    <title>娛樂城後台查詢 - 登入頁面</title>
     <style>
         body {
             font-family: Arial, sans-serif;
