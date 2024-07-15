@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>娛樂城後台查詢 - 登入頁面</title>
+    <title>娛樂城後台總結 - 登入頁面</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,7 +23,6 @@
         h2 {
             margin-bottom: 20px;
             color: #000; /* 將標題字體顏色設為黑色 */
-<a href="https://yyds-simon.github.io/jog/">測試版</a>
         }
         input[type="text"], input[type="password"], select {
             width: calc(100% - 20px);
@@ -51,7 +51,8 @@
 </head>
 <body>
     <div class="container">
-        <h2>歡迎使用後台登入查詢</h2>
+        <h2>歡迎來到測試版後台總結</h2>
+        <p><a href="https://yyds-simon.github.io/jog/" target="_blank">測試版</a></p>
         <form id="loginForm" action="#">
             <label for="username">帳號：</label><br>
             <input type="text" id="username" name="username" placeholder="請輸入帳號" required><br><br>
