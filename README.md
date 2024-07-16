@@ -1,5 +1,4 @@
 
-
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -8,16 +7,16 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
+            background-color: #191919; /* 深色背景 */
+            color: #ccc; /* 淺色文字 */
             text-align: center;
             margin-top: 50px;
             position: relative; /* 讓內容可以使用絕對定位 */
             z-index: 1; /* 將內容放在最上層 */
         }
         .header {
-            background-color: #000;
-            color: #0033ff;
+            background-color: #191919; /* 與背景同色 */
+            color: #0033ff; /* 藍色文字 */
             font-size: 24px;
             font-weight: bold;
             padding: 20px;
@@ -25,10 +24,11 @@
             position: absolute;
             top: 0;
             left: 0;
+            z-index: 2; /* 頂部標題在最上層 */
         }
         .footer {
-            background-color: #000;
-            color: #0033ff;
+            background-color: #000; /* 深色背景 */
+            color: #0033ff; /* 藍色文字 */
             font-family: "標楷體", "Times New Roman", serif;
             font-size: 24px;
             padding: 10px 20px;
@@ -37,13 +37,13 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 0; /* 將底部長方形放在最底層 */
+            z-index: 0; /* 底部長方形放在最底層 */
         }
         .container {
             max-width: 400px;
             margin: auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(25, 25, 25, 0.8); /* 半透明的灰色背景 */
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
             position: relative;
@@ -56,17 +56,18 @@
             width: calc(100% - 20px);
             padding: 10px;
             margin: 8px 0;
-            border: 1px solid #ccc;
+            border: 1px solid #333; /* 深色邊框 */
             border-radius: 4px;
             box-sizing: border-box;
             font-size: 16px;
-            background-color: #f0f0f0;
-            color: #333;
+            background-color: #333; /* 深色背景 */
+            color: #ccc; /* 淺色文字 */
+            outline: none; /* 移除默認的外框 */
         }
         input[type="submit"] {
             width: 100%;
-            background-color: #4CAF50;
-            color: white;
+            background-color: #004466; /* 深藍色背景 */
+            color: #fff; /* 白色文字 */
             padding: 10px 20px;
             margin: 8px 0;
             border: none;
@@ -75,10 +76,10 @@
             font-size: 16px;
         }
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #003355; /* 深色悬停背景 */
         }
         #error {
-            color: #ff0000;
+            color: #ff6666; /* 紅色錯誤訊息 */
             font-size: 14px;
             margin-top: 10px;
         }
@@ -86,7 +87,7 @@
 </head>
 <body>
     <div class="header">
-        測試版！登入只有三次機會！否則封鎖ＩＰ
+       錯誤達三次將自動上鎖後台查詢功能
     </div>
 
     <div class="container">
@@ -128,9 +129,20 @@
         document.getElementById("loginForm").addEventListener("submit", function(event) {
             event.preventDefault(); // 阻止表單預設提交行為
 
+            var startTime = Date.now(); // 獲取表單提交開始時間
+
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
             var platform = document.getElementById("platform").value;
+
+            // 檢查帳號和密碼輸入時間
+            var endTime = Date.now();
+            var inputTime = (endTime - startTime) / 1000; // 換算成秒
+
+            if (inputTime < 4) {
+                document.getElementById("error").textContent = "帳號和密碼輸入速度過快，請重新輸入";
+                return;
+            }
 
             // 檢查是否選擇了平台
             if (platform === "") {
