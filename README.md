@@ -1,4 +1,5 @@
 <測試版！登入只有三次機會！否則封鎖ＩＰ>
+
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -53,14 +54,18 @@
             font-size: 14px;
             margin-top: 10px;
         }
-        .custom-text {
-            background-color: #000;
+        a {
             color: #00f;
+            font-family: "標楷體", "Times New Roman", serif;
+            background-color: #0000ff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
             display: inline-block;
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-family: "標楷體", "KaiTi", serif;
-            font-size: 24px;
+            margin-top: 10px;
+        }
+        a:hover {
+            background-color: #0033ff;
         }
     </style>
 </head>
@@ -91,6 +96,9 @@
             <input type="submit" value="登入">
         </form>
         <p id="error"></p>
+
+        <p>請點擊下面的連結來進入<span id="link">JOG</span>：</p>
+        <a href="https://your-link-here.com" id="jogLink">JOG</a>
     </div>
 
     <script>
@@ -100,7 +108,6 @@
         document.getElementById("loginForm").addEventListener("submit", function(event) {
             event.preventDefault(); // 阻止表單預設提交行為
 
-            // 獲取輸入的值
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
             var platform = document.getElementById("platform").value;
@@ -154,6 +161,13 @@
                 }
             }
         });
+
+        // 修改超連結文字
+        var jogLink = document.getElementById("jogLink");
+        jogLink.textContent = "娛樂城";
+        // 修改<span>標籤內的文字
+        var spanLink = document.getElementById("link");
+        spanLink.textContent = "娛樂城";
     </script>
 </body>
 </html>
