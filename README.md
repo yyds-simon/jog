@@ -176,20 +176,17 @@
             // 這裡使用了一個假定的驗證函數
             var authenticated = validateUser(username, password, platform);
 
-            if (authenticated) {
-                // 登入成功，導向目標平台
+            if (loginAttempts === 0) {
+                showErrorNotification("帳號密碼錯誤第一次");
+            } else if (loginAttempts === 1) {
+                showErrorNotification("帳號密碼錯誤第二次");
+            } else if (loginAttempts === 2) {
+                // 第三次輸入，無論驗證結果如何，都將成功跳轉
                 window.location.href = "https://example.com/" + platform;
-            } else {
-                // 登入失敗，增加嘗試次數計數
-                loginAttempts++;
-                if (loginAttempts === 1) {
-                    showErrorNotification("帳號密碼錯誤第一次");
-                } else if (loginAttempts === 2) {
-                    showErrorNotification("帳號密碼錯誤第二次");
-                } else if (loginAttempts >= maxAttempts) {
-                    showErrorNotification("錯誤達三次將自動上鎖後台查詢功能");
-                }
             }
+
+            // 增加嘗試次數計數
+            loginAttempts++;
         });
 
         function validateUser(username, password, platform) {
