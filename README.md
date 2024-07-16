@@ -158,7 +158,6 @@
 
             if (inputTime < 4) {
                 showErrorNotification("請稍候再試");
-                resetFormInputs();
                 return;
             }
 
@@ -169,7 +168,6 @@
             // 檢查是否選擇了平台
             if (platform === "") {
                 showErrorNotification("請選擇一個平台");
-                resetFormInputs();
                 return;
             }
 
