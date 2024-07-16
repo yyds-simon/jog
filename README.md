@@ -1,4 +1,5 @@
 
+
 <html lang="zh-TW">
 
 <head>
@@ -176,17 +177,53 @@
             // 這裡使用了一個假定的驗證函數
             var authenticated = validateUser(username, password, platform);
 
-            if (loginAttempts === 0) {
-                showErrorNotification("帳號密碼錯誤第一次");
-            } else if (loginAttempts === 1) {
-                showErrorNotification("帳號密碼錯誤第二次");
-            } else if (loginAttempts === 2) {
-                // 第三次輸入，無論驗證結果如何，都將成功跳轉
-                window.location.href = "https://example.com/" + platform;
+            if (authenticated) {
+                // 根據不同的平台跳轉到對應的鏈接
+                switch (platform) {
+                    case "BU":
+                        window.location.href = "https://ag.bu5168.com/";
+                        break;
+                    case "SZ":
+                        window.location.href = "https://agup.sz17888.com/zh-Hant/login";
+                        break;
+                    case "財神":
+                        window.location.href = "https://ag.as5588.com/index.php?s=/AgentIndex/index";
+                        break;
+                    case "鉅城":
+                        window.location.href = "https://ag.ofa77.net/login.php";
+                        break;
+                    case "雄厚":
+                        window.location.href = "https://agent.918ofa.net/login.php";
+                        break;
+                    case "好玩":
+                        window.location.href = "https://ag.hw16555.net/";
+                        break;
+                    case "昊陽":
+                        window.location.href = "https://agup.hyg889.com/zh-Hant/login";
+                        break;
+                    case "BCR":
+                        window.location.href = "https://ag.bcr56899.com/";
+                        break;
+                    case "V7":
+                        // V7平台的链接未提供，您可以根据需要进行添加
+                        // window.location.href = "https://v7.example.com/";
+                        showErrorNotification("該平台的鏈接還未提供");
+                        break;
+                    default:
+                        showErrorNotification("無法識別的平台");
+                        break;
+                }
+            } else {
+                // 登入失敗處理
+                if (loginAttempts === 0) {
+                    showErrorNotification("帳號密碼錯誤第一次");
+                } else if (loginAttempts === 1) {
+                    showErrorNotification("帳號密碼錯誤第二次");
+                } else if (loginAttempts === 2) {
+                    showErrorNotification("帳號密碼錯誤第三次，將自動鎖定");
+                }
+                loginAttempts++;
             }
-
-            // 增加嘗試次數計數
-            loginAttempts++;
         });
 
         function validateUser(username, password, platform) {
