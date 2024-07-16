@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="zh-TW">
 
 <head>
@@ -8,17 +8,17 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
+            background-color: #222; /* 深色背景 */
+            color: #ddd; /* 淺色文字 */
             text-align: center;
             margin-top: 50px;
-            position: relative; /* 讓內容可以使用絕對定位 */
-            z-index: 1; /* 將內容放在最上層 */
+            position: relative;
+            z-index: 1;
         }
 
         .header {
-            background-color: #000;
-            color: #0033ff;
+            background-color: #222; /* 深色背景 */
+            color: #0033ff; /* 藍色字體 */
             font-size: 24px;
             font-weight: bold;
             padding: 20px;
@@ -28,10 +28,22 @@
             left: 0;
         }
 
-        .footer {
-            background-color: #000;
+        .sub-header {
+            background-color: #222; /* 深色背景 */
             color: #ff0000; /* 紅色字體 */
-            font-family: "標楷體", "Times New Roman", serif;
+            font-size: 36px; /* 較大的字體大小 */
+            font-family: "標楷體", "Times New Roman", serif; /* 書寫體 */
+            padding: 20px;
+            width: 100%;
+            position: absolute;
+            top: 50px;
+            left: 0;
+        }
+
+        .footer {
+            background-color: #222; /* 深色背景 */
+            color: #ff0000; /* 紅色字體 */
+            font-family: "標楷體", "Times New Roman", serif; /* 書寫體 */
             font-size: 24px;
             padding: 10px 20px;
             border-radius: 5px;
@@ -39,22 +51,22 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 0; /* 將底部長方形放在最底層 */
+            z-index: 0;
         }
 
         .footer a {
             color: #ff0000; /* 紅色字體 */
-            font-family: "標楷體", "Times New Roman", serif;
+            font-family: "標楷體", "Times New Roman", serif; /* 書寫體 */
             font-size: 24px;
-            text-decoration: none; /* 移除下劃線 */
-            font-style: italic; /* 斜體 */
+            text-decoration: none;
+            font-style: italic;
         }
 
         .container {
             max-width: 400px;
             margin: auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(0, 0, 0, 0.8); /* 半透明黑色背景 */
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
             position: relative;
@@ -63,6 +75,12 @@
 
         h2 {
             margin-bottom: 20px;
+            color: #ff0000; /* 紅色標題 */
+        }
+
+        label {
+            color: #fff; /* 白色標籤文字 */
+            font-size: 16px;
         }
 
         input[type="text"],
@@ -71,17 +89,17 @@
             width: calc(100% - 20px);
             padding: 10px;
             margin: 8px 0;
-            border: 1px solid #ccc;
+            border: 1px solid #444; /* 深色邊框 */
             border-radius: 4px;
             box-sizing: border-box;
             font-size: 16px;
-            background-color: #f0f0f0;
-            color: #333;
+            background-color: #333; /* 深色背景 */
+            color: #ddd; /* 淺色文字 */
         }
 
         input[type="submit"] {
             width: 100%;
-            background-color: #4CAF50;
+            background-color: #4CAF50; /* 綠色按鈕 */
             color: white;
             padding: 10px 20px;
             margin: 8px 0;
@@ -92,21 +110,21 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #45a049; /* 深綠色按鈕 */
         }
 
         .notification {
-            background-color: rgba(255, 0, 0, 0.8);
+            background-color: rgba(255, 0, 0, 0.8); /* 紅色通知背景 */
             color: white;
             padding: 15px;
             margin-bottom: 15px;
             border-radius: 8px;
-            display: none; /* 初始隱藏 */
+            display: none;
             position: fixed;
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 1000; /* 確保在最上層 */
+            z-index: 1000;
         }
     </style>
 </head>
@@ -114,6 +132,10 @@
 <body>
     <div class="header">
         <p style="margin-top: -0.3cm; color: #ffcc00; font-family: Microsoft JhengHei;"> 錯誤達三次將自動上鎖後台查詢功能</p>
+    </div>
+
+    <div class="sub-header">
+        <span class="highlight-text">娛樂城</span>
     </div>
 
     <div class="container">
@@ -199,7 +221,7 @@
                     setTimeout(function() {
                         loginAttempts = 0; // 重置嘗試次數
                         document.getElementById("notification").style.display = "none"; // 隱藏通知
-                    }, 5000); // 5秒後清除通知
+                    }, 5000); // 顯示5秒後隱藏
                 }
                 return;
             }
@@ -239,4 +261,5 @@
 </body>
 
 </html>
+
 
