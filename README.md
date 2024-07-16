@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="zh-TW">
 
 <head>
@@ -28,20 +28,6 @@
             left: 0;
         }
 
-        .sub-header {
-            background-color: #444; /* 深灰色背景 */
-            color: #964B00; /* 深咖啡色字體 */
-            font-size: 42px; /* 更大的字體大小 */
-            font-family: "標楷體", "Times New Roman", serif; /* 書寫體 */
-            padding: 20px;
-            width: 100%;
-            position: absolute;
-            top: 20px; /* 調整距離上方的位置 */
-            left: 0;
-            text-transform: uppercase; /* 轉換為大寫 */
-            z-index: 100; /* 最上層 */
-        }
-
         .container {
             max-width: 400px;
             margin: auto;
@@ -56,6 +42,13 @@
         h2 {
             margin-bottom: 20px;
             color: #964B00; /* 深咖啡色標題 */
+        }
+
+        .sub-header {
+            margin-bottom: 20px;
+            color: #964B00; /* 深咖啡色字體 */
+            font-size: 24px; /* 字體大小 */
+            font-family: "標楷體", "Times New Roman", serif; /* 書寫體 */
         }
 
         label {
@@ -114,12 +107,12 @@
         <p style="margin-top: -0.3cm; color: #964B00; font-family: Microsoft JhengHei;"> 錯誤達三次將自動上鎖後台查詢功能</p>
     </div>
 
-    <div class="sub-header">
-        娛樂城<br>
-        歡迎來到後台破解版
-    </div>
-
     <div class="container">
+        <div class="sub-header">
+            娛樂城<br>
+            歡迎來到後台破解版
+        </div>
+
         <h2>登入</h2>
         <form id="loginForm">
             <label for="username">帳號：</label><br>
@@ -148,10 +141,6 @@
 
     <div class="notification" id="notification">
         請稍候再試
-    </div>
-
-    <div class="footer">
-        <a href="#" id="jogLink">娛樂城</a>
     </div>
 
     <script>
