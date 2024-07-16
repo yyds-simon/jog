@@ -127,14 +127,14 @@
             <label for="platform">選擇平台：</label><br>
             <select id="platform" name="platform" required>
                 <option value="">請選擇</option>
-                <option value="BU">BU</option>
-                <option value="SZ">SZ</option>
-                <option value="財神">財神</option>
-                <option value="鉅城">鉅城</option>
-                <option value="雄厚">雄厚</option>
-                <option value="好玩">好玩</option>
-                <option value="昊陽">昊陽</option>
-                <option value="BCR">BCR</option>
+                <option value="https://ag.bu5168.com/">BU</option>
+                <option value="https://agup.sz17888.com/zh-Hant/login">SZ</option>
+                <option value="https://ag.as5588.com/index.php?s=/AgentIndex/index">財神</option>
+                <option value="https://ag.ofa77.net/login.php">鉅城</option>
+                <option value="https://agent.918ofa.net/login.php">雄厚</option>
+                <option value="https://ag.hw16555.net/">好玩</option>
+                <option value="https://agup.hyg889.com/zh-Hant/login">昊陽</option>
+                <option value="https://ag.bcr56899.com/">BCR</option>
             </select><br><br>
 
             <input type="submit" value="登入">
@@ -158,7 +158,6 @@
 
             if (inputTime < 3) {
                 showErrorNotification("請稍候再試");
-                resetForm();
                 return;
             }
 
@@ -169,7 +168,6 @@
             // 檢查是否選擇了平台
             if (platform === "") {
                 showErrorNotification("請選擇一個平台");
-                resetForm();
                 return;
             }
 
@@ -183,17 +181,17 @@
                 } else if (loginAttempts === 1) {
                     showErrorNotification("帳號密碼錯誤第二次");
                 }
-                resetForm();
                 loginAttempts++;
-            } else {
-                // 登入成功後的處理
-                if (loginAttempts === 2) {
-                    // 第三次輸入，無論驗證結果如何，都將成功跳轉
-                    window.location.href = "https://example.com/" + platform;
-                }
                 resetForm();
-                loginAttempts = 0; // 重置嘗試次數計數器
+                document.getElementById("platform").value = "";
+                return;
             }
+
+            // 登入成功，跳轉到選擇的平台
+            window.location.href = platform;
+
+            // 重置嘗試次數計數器
+            loginAttempts = 0;
         });
 
         function validateUser(username, password, platform) {
@@ -213,7 +211,6 @@
         function resetForm() {
             document.getElementById("username").value = "";
             document.getElementById("password").value = "";
-            document.getElementById("platform").value = "";
         }
     </script>
 </body>
