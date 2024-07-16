@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="zh-TW">
 
 <head>
@@ -44,7 +44,11 @@
             color: #964B00; /* 深咖啡色字體 */
             font-size: 24px; /* 字體大小 */
             font-family: "標楷體", "Times New Roman", serif; /* 書寫體 */
-            text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black; /* 黑色描邊 */
+        }
+
+        .sub-header span {
+            color: inherit; /* 繼承父元素的顏色 */
+            text-shadow: none; /* 移除黑色描邊 */
         }
 
         label {
@@ -83,7 +87,7 @@
         }
 
         .notification {
-            background-color: rgba(255, 255, 255, 0.8); /* 半透明白色通知背景 */
+            background-color: rgba(0, 0, 0, 0.8); /* 半透明黑色背景 */
             color: white; /* 白色文字 */
             padding: 15px;
             margin-bottom: 15px;
@@ -206,4 +210,3 @@
 </body>
 
 </html>
-
