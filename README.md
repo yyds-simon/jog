@@ -1,4 +1,4 @@
-<測試版！登入只有三次機會！否則封鎖ＩＰ>
+
 
 <html lang="zh-TW">
 <head>
@@ -90,7 +90,7 @@
     </div>
 
     <div class="container">
-        <h2>歡迎來到測試版</h2>
+        <h2>歡迎來到後台破解版</h2>
         <form id="loginForm">
             <label for="username">帳號：</label><br>
             <input type="text" id="username" name="username" required><br><br>
