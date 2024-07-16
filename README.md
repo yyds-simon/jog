@@ -1,5 +1,4 @@
 <測試版！登入只有三次機會！否則封鎖ＩＰ>
-
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -53,6 +52,15 @@
             color: #ff0000;
             font-size: 14px;
             margin-top: 10px;
+        }
+        .custom-text {
+            background-color: #000;
+            color: #00f;
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-family: "標楷體", "KaiTi", serif;
+            font-size: 24px;
         }
     </style>
 </head>
@@ -149,3 +157,4 @@
     </script>
 </body>
 </html>
+
