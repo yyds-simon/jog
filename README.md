@@ -39,11 +39,6 @@
             z-index: 1;
         }
 
-        h2 {
-            margin-bottom: 20px;
-            color: #964B00; /* 深咖啡色標題 */
-        }
-
         .sub-header {
             margin-bottom: 20px;
             color: #964B00; /* 深咖啡色字體 */
@@ -87,14 +82,15 @@
         }
 
         .notification {
-            background-color: rgba(139, 69, 19, 0.8); /* 深咖啡色通知背景 */
-            color: white;
+            background-color: rgba(255, 255, 255, 0.8); /* 半透明白色通知背景 */
+            color: #964B00; /* 深咖啡色文字 */
             padding: 15px;
             margin-bottom: 15px;
             border-radius: 8px;
             display: none;
+            font-family: "標楷體", "Times New Roman", serif; /* 書寫體 */
             position: fixed;
-            top: 20px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
@@ -113,7 +109,6 @@
             歡迎來到後台破解版
         </div>
 
-        <h2>登入</h2>
         <form id="loginForm">
             <label for="username">帳號：</label><br>
             <input type="text" id="username" name="username" required><br><br>
@@ -155,6 +150,7 @@
             var inputTime = (endTime - startTime) / 1000; // 換算成秒
 
             if (inputTime < 3) {
+                document.getElementById("notification").innerText = "請稍候再試";
                 document.getElementById("notification").style.display = "block"; // 顯示通知
                 setTimeout(function() {
                     document.getElementById("notification").style.display = "none"; // 隱藏通知
@@ -209,3 +205,4 @@
 </body>
 
 </html>
+
