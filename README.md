@@ -44,6 +44,7 @@
             color: #964B00; /* 深咖啡色字體 */
             font-size: 24px; /* 字體大小 */
             font-family: "標楷體", "Times New Roman", serif; /* 書寫體 */
+            text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black; /* 黑色描邊 */
         }
 
         label {
@@ -187,13 +188,13 @@
                 if (loginAttempts >= maxAttempts) {
                     document.getElementById("notification").innerText = "錯誤達三次將自動上鎖後台查詢功能";
                 } else {
-                    document.getElementById("notification").innerText = "帳號或密碼錯誤，請再試一次";
+                    document.getElementById("notification").innerText = "帳號密碼錯誤";
                 }
 
                 document.getElementById("notification").style.display = "block"; // 顯示通知
                 setTimeout(function() {
                     document.getElementById("notification").style.display = "none"; // 隱藏通知
-                }, 3000); // 顯示3秒後
+                }, 3000); // 顯示3秒後隱藏
             }
         });
 
