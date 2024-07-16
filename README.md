@@ -1,5 +1,5 @@
 <測試版！登入只有三次機會！否則封鎖ＩＰ>
-<!DOCTYPE html>
+
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -12,6 +12,32 @@
             color: #fff;
             text-align: center;
             margin-top: 50px;
+            position: relative; /* 讓內容可以使用絕對定位 */
+            z-index: 1; /* 將內容放在最上層 */
+        }
+        .header {
+            background-color: #000;
+            color: #0033ff;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 20px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .footer {
+            background-color: #000;
+            color: #0033ff;
+            font-family: "標楷體", "Times New Roman", serif;
+            font-size: 24px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0; /* 將底部長方形放在最底層 */
         }
         .container {
             max-width: 400px;
@@ -20,6 +46,8 @@
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
         }
         h2 {
             margin-bottom: 20px;
@@ -54,22 +82,13 @@
             font-size: 14px;
             margin-top: 10px;
         }
-        a#jogLink {
-            color: #0033ff;
-            font-family: "標楷體", "Times New Roman", serif;
-            background-color: #000;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 10px;
-        }
-        a#jogLink:hover {
-            background-color: #001a66;
-        }
     </style>
 </head>
 <body>
+    <div class="header">
+        測試版！登入只有三次機會！否則封鎖ＩＰ
+    </div>
+
     <div class="container">
         <h2>歡迎來到測試版</h2>
         <form id="loginForm">
@@ -96,6 +115,10 @@
             <input type="submit" value="登入">
         </form>
         <p id="error"></p>
+    </div>
+
+    <div class="footer">
+        <a href="#" id="jogLink">娛樂城</a>
     </div>
 
     <script>
@@ -165,5 +188,3 @@
     </script>
 </body>
 </html>
-
-
