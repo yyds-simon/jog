@@ -83,12 +83,13 @@
 
         .notification {
             background-color: rgba(255, 255, 255, 0.8); /* 半透明白色通知背景 */
-            color: #964B00; /* 深咖啡色文字 */
+            color: white; /* 白色文字 */
             padding: 15px;
             margin-bottom: 15px;
             border-radius: 8px;
             display: none;
             font-family: "標楷體", "Times New Roman", serif; /* 書寫體 */
+            text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black; /* 黑色描邊 */
             position: fixed;
             bottom: 20px;
             left: 50%;
@@ -197,8 +198,7 @@
         });
 
         function validateUser(username, password, platform) {
-            // 這裡可以放實際的帳號密碼驗證邏輯
-            // 這是一個示例函數，實際上需要連接後端進行驗證
+            // 此處模擬驗證函數，假設帳號為 admin，密碼為 admin，並且平台不為空
             return username === "admin" && password === "admin" && platform !== "";
         }
     </script>
