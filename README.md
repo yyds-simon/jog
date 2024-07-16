@@ -31,19 +31,15 @@
         .sub-header {
             background-color: #444; /* 深灰色背景 */
             color: #964B00; /* 深咖啡色字體 */
-            font-size: 36px; /* 較大的字體大小 */
+            font-size: 42px; /* 更大的字體大小 */
             font-family: "標楷體", "Times New Roman", serif; /* 書寫體 */
             padding: 20px;
             width: 100%;
             position: absolute;
-            top: 50px;
+            top: 20px; /* 調整距離上方的位置 */
             left: 0;
-        }
-
-        .sub-header .highlight-text {
-            color: #964B00; /* 深咖啡色字體 */
-            font-size: 36px; /* 與父元素相同 */
-            font-family: "標楷體", "Times New Roman", serif; /* 書寫體 */
+            text-transform: uppercase; /* 轉換為大寫 */
+            z-index: 100; /* 最上層 */
         }
 
         .footer {
@@ -267,3 +263,4 @@
 </body>
 
 </html>
+
