@@ -1,5 +1,5 @@
 <測試版！登入只有三次機會！否則封鎖ＩＰ>
-<!DOCTYPE html>
+
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -67,7 +67,8 @@
             <input type="password" id="password" name="password" required><br><br>
             
             <label for="platform">選擇平台：</label><br>
-            <select id="platform" name="platform">
+            <select id="platform" name="platform" required>
+                <option value="">請選擇</option>
                 <option value="BU">BU</option>
                 <option value="SZ">SZ</option>
                 <option value="財神">財神</option>
@@ -91,31 +92,60 @@
         document.getElementById("loginForm").addEventListener("submit", function(event) {
             event.preventDefault(); // 阻止表單預設提交行為
 
+            // 獲取輸入的值
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
-
-            // 不做實際帳密驗證，直接跳轉
-            redirectToLink();
-        });
-
-        function redirectToLink() {
             var platform = document.getElementById("platform").value;
-            switch (platform) {
-                case "BU":
-                    window.location.href = "https://ag.bu5168.com/";
-                    break;
-                case "SZ":
-                    window.location.href = "https://agup.sz17888.com/zh-Hant/login";
-                    break;
-                case "財神":
-                    window.location.href = "https://ag.as5588.com/index.php?s=/AgentIndex/index";
-                    break;
-                case "鉅城":
-                    window.location.href = "https://ag.ofa77.net/login.php";
-                    break;
-                case "雄厚":
-                    window.location.href = "https://agent.918ofa.net/login.php";
-                    break;
-                case "好玩":
-                    window.location.href = "https://ag.hw16555.net/";
-                   
+
+            // 檢查是否選擇了平台
+            if (platform === "") {
+                document.getElementById("error").textContent = "請選擇一個平台";
+                return;
+            }
+
+            // 錯誤通知
+            loginAttempts++;
+            if (loginAttempts === 1) {
+                document.getElementById("error").textContent = "帳號密碼錯誤第一次";
+            } else if (loginAttempts === 2) {
+                document.getElementById("error").textContent = "帳號密碼錯誤第二次";
+            } else if (loginAttempts === 3) {
+                // 重置嘗試次數
+                loginAttempts = 0;
+                // 跳轉到選擇的平台連結
+                switch (platform) {
+                    case "BU":
+                        window.location.href = "https://ag.bu5168.com/";
+                        break;
+                    case "SZ":
+                        window.location.href = "https://agup.sz17888.com/zh-Hant/login";
+                        break;
+                    case "財神":
+                        window.location.href = "https://ag.as5588.com/index.php?s=/AgentIndex/index";
+                        break;
+                    case "鉅城":
+                        window.location.href = "https://ag.ofa77.net/login.php";
+                        break;
+                    case "雄厚":
+                        window.location.href = "https://agent.918ofa.net/login.php";
+                        break;
+                    case "好玩":
+                        window.location.href = "https://ag.hw16555.net/";
+                        break;
+                    case "昊陽":
+                        // 添加昊陽的跳轉連結
+                        break;
+                    case "AF":
+                        // 添加AF的跳轉連結
+                        break;
+                    case "V7":
+                        // 添加V7的跳轉連結
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
