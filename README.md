@@ -181,17 +181,14 @@
                 } else if (loginAttempts === 1) {
                     showErrorNotification("帳號密碼錯誤第二次");
                 }
-                loginAttempts++;
-                resetForm();
-                document.getElementById("platform").value = "";
-                return;
+                resetForm(); // 清空表單輸入欄位
+                document.getElementById("platform").value = ""; // 重設下拉選項為空
+            } else {
+                window.location.href = platform; // 登入成功後跳轉到選擇的平台
             }
 
-            // 登入成功，跳轉到選擇的平台
-            window.location.href = platform;
-
-            // 重置嘗試次數計數器
-            loginAttempts = 0;
+            // 增加嘗試次數計數
+            loginAttempts++;
         });
 
         function validateUser(username, password, platform) {
@@ -216,4 +213,5 @@
 </body>
 
 </html>
+
 
