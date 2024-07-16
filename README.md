@@ -8,8 +8,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #222;
-            color: #ddd;
+            background-color: #000;
+            color: #fff;
             text-align: center;
             margin-top: 50px;
             position: relative; /* 讓內容可以使用絕對定位 */
@@ -17,8 +17,8 @@
         }
 
         .header {
-            background-color: #111;
-            color: #888;
+            background-color: #000;
+            color: #0033ff;
             font-size: 24px;
             font-weight: bold;
             padding: 20px;
@@ -29,9 +29,9 @@
         }
 
         .footer {
-            background-color: #111;
-            color: #aaa; /* 紅色字體 */
-            font-family: "Segoe Script", cursive;
+            background-color: #000;
+            color: #ff0000; /* 紅色字體 */
+            font-family: "標楷體", "Times New Roman", serif;
             font-size: 24px;
             padding: 10px 20px;
             border-radius: 5px;
@@ -40,9 +40,14 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 0; /* 將底部長方形放在最底層 */
-            background-image: linear-gradient(45deg, #ff0000, #990000); /* 火焰黑底 */
-            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 40px #ff0000; /* 火焰效果 */
-            padding: 15px 30px; /* 增加內邊距 */
+        }
+
+        .footer a {
+            color: #ff0000; /* 紅色字體 */
+            font-family: "標楷體", "Times New Roman", serif;
+            font-size: 24px;
+            text-decoration: none; /* 移除下劃線 */
+            font-style: italic; /* 斜體 */
         }
 
         .container {
@@ -58,13 +63,6 @@
 
         h2 {
             margin-bottom: 20px;
-            color: #aaa;
-            font-size: 28px;
-        }
-
-        label {
-            color: #ccc;
-            font-size: 18px;
         }
 
         input[type="text"],
@@ -73,18 +71,18 @@
             width: calc(100% - 20px);
             padding: 10px;
             margin: 8px 0;
-            border: 1px solid #444;
+            border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
             font-size: 16px;
-            background-color: #333;
-            color: #ccc;
+            background-color: #f0f0f0;
+            color: #333;
         }
 
         input[type="submit"] {
             width: 100%;
-            background-color: #555;
-            color: #eee;
+            background-color: #4CAF50;
+            color: white;
             padding: 10px 20px;
             margin: 8px 0;
             border: none;
@@ -94,21 +92,28 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #666;
+            background-color: #45a049;
         }
 
-        #error {
-            color: #ff6666;
-            font-size: 14px;
-            margin-top: 10px;
-            display: none; /* 預設隱藏 */
+        .notification {
+            background-color: rgba(255, 0, 0, 0.8);
+            color: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            display: none; /* 初始隱藏 */
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000; /* 確保在最上層 */
         }
     </style>
 </head>
 
 <body>
     <div class="header">
-        <p style="margin-top: -0.3cm; color: #ffcc00; font-family: Microsoft JhengHei;">錯誤達三次將自動上鎖後台查詢功能</p>
+        <p style="margin-top: -0.3cm; color: #ffcc00; font-family: Microsoft JhengHei;"> 錯誤達三次將自動上鎖後台查詢功能</p>
     </div>
 
     <div class="container">
@@ -136,11 +141,14 @@
 
             <input type="submit" value="登入">
         </form>
-        <p id="error"></p>
+    </div>
+
+    <div class="notification" id="notification">
+        請稍候再試
     </div>
 
     <div class="footer">
-        <a href="#" id="jogLink" style="color: #ff0000;">娛樂城</a>
+        <a href="#" id="jogLink">娛樂城</a>
     </div>
 
     <script>
@@ -154,9 +162,11 @@
             var endTime = Date.now();
             var inputTime = (endTime - startTime) / 1000; // 換算成秒
 
-            if (inputTime < 3) { // 改為三秒
-                document.getElementById("error").textContent = "請稍候再試";
-                document.getElementById("error").style.display = "block"; // 顯示錯誤訊息
+            if (inputTime < 3) {
+                document.getElementById("notification").style.display = "block"; // 顯示通知
+                setTimeout(function() {
+                    document.getElementById("notification").style.display = "none"; // 隱藏通知
+                }, 3000); // 顯示3秒後隱藏
                 return;
             }
 
@@ -166,8 +176,11 @@
 
             // 檢查是否選擇了平台
             if (platform === "") {
-                document.getElementById("error").textContent = "請選擇一個平台";
-                document.getElementById("error").style.display = "block"; // 顯示錯誤訊息
+                document.getElementById("notification").innerText = "請選擇一個平台";
+                document.getElementById("notification").style.display = "block"; // 顯示通知
+                setTimeout(function() {
+                    document.getElementById("notification").style.display = "none"; // 隱藏通知
+                }, 3000); // 顯示3秒後隱藏
                 return;
             }
 
@@ -177,16 +190,16 @@
                 // 錯誤通知
                 loginAttempts++;
                 if (loginAttempts === 1 || loginAttempts === 2) {
-                    document.getElementById("error").textContent = "帳號密碼錯誤";
-                    document.getElementById("error").style.display = "block"; // 顯示錯誤訊息
+                    document.getElementById("notification").innerText = "帳號密碼錯誤";
+                    document.getElementById("notification").style.display = "block"; // 顯示通知
                 } else if (loginAttempts === 3) {
                     // 达到最大嘗試次數
-                    document.getElementById("error").textContent = "錯誤達三次將自動上鎖後台查詢功能";
+                    document.getElementById("notification").innerText = "錯誤達三次將自動上鎖後台查詢功能";
                     document.getElementById("loginForm").reset(); // 重置表單
                     setTimeout(function() {
                         loginAttempts = 0; // 重置嘗試次數
-                        document.getElementById("error").textContent = "";
-                    }, 5000); // 5秒後清除錯誤訊息
+                        document.getElementById("notification").style.display = "none"; // 隱藏通知
+                    }, 5000); // 5秒後清除通知
                 }
                 return;
             }
