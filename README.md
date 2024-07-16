@@ -136,10 +136,9 @@
         <p style="margin-top: -0.3cm; color: #964B00; font-family: Microsoft JhengHei;"> 錯誤達三次將自動上鎖後台查詢功能</p>
     </div>
 
-    <div class="sub-header">
-        <span class="highlight-text">娛樂城</span>
-    </div>
 
+    </div>
+ <h2>娛樂城</h2>
     <div class="container">
         <h2>歡迎來到後台破解版</h2>
         <form id="loginForm">
