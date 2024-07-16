@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="zh-TW">
 
 <head>
@@ -38,6 +38,12 @@
             position: absolute;
             top: 50px;
             left: 0;
+        }
+
+        .sub-header .highlight-text {
+            color: #ff0000; /* 突出顯示的紅色 */
+            font-size: 36px; /* 與父元素相同 */
+            font-family: "標楷體", "Times New Roman", serif; /* 書寫體 */
         }
 
         .footer {
@@ -261,5 +267,3 @@
 </body>
 
 </html>
-
-
