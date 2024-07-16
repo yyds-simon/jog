@@ -1,5 +1,5 @@
 <測試版！登入只有三次機會！否則封鎖ＩＰ>
-
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -54,18 +54,18 @@
             font-size: 14px;
             margin-top: 10px;
         }
-        a {
-            color: #00f;
+        a#jogLink {
+            color: #0033ff;
             font-family: "標楷體", "Times New Roman", serif;
-            background-color: #0000ff;
+            background-color: #000;
             padding: 10px 20px;
             border-radius: 5px;
             text-decoration: none;
             display: inline-block;
             margin-top: 10px;
         }
-        a:hover {
-            background-color: #0033ff;
+        a#jogLink:hover {
+            background-color: #001a66;
         }
     </style>
 </head>
@@ -96,9 +96,6 @@
             <input type="submit" value="登入">
         </form>
         <p id="error"></p>
-
-        <p>請點擊下面的連結來進入<span id="link">JOG</span>：</p>
-        <a href="https://your-link-here.com" id="jogLink">JOG</a>
     </div>
 
     <script>
@@ -165,10 +162,8 @@
         // 修改超連結文字
         var jogLink = document.getElementById("jogLink");
         jogLink.textContent = "娛樂城";
-        // 修改<span>標籤內的文字
-        var spanLink = document.getElementById("link");
-        spanLink.textContent = "娛樂城";
     </script>
 </body>
 </html>
+
 
