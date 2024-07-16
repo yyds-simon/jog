@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="zh-TW">
 
 <head>
@@ -106,7 +106,9 @@
 
 <body>
     <div class="header">
-        <p style="margin-top: -0.3cm; color: #964B00; font-family: Microsoft JhengHei;"> 錯誤達三次將自動上鎖後台查詢功能</p>
+        <p style="margin-top: -0.3cm; color: #964B00; font-family: Microsoft JhengHei;"> 
+            <span style="color: white; text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;">錯誤達三次將自動上鎖後台查詢功能</span>
+        </p>
     </div>
 
     <div class="container">
@@ -198,7 +200,7 @@
                 document.getElementById("notification").style.display = "block"; // 顯示通知
                 setTimeout(function() {
                     document.getElementById("notification").style.display = "none"; // 隱藏通知
-                }, 3000); // 顯示3秒後隱藏
+                }, 3000); // 顯示3秒後
             }
         });
 
