@@ -8,8 +8,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
+            background-color: #222;
+            color: #ddd;
             text-align: center;
             margin-top: 50px;
             position: relative; /* 讓內容可以使用絕對定位 */
@@ -17,8 +17,8 @@
         }
 
         .header {
-            background-color: #000;
-            color: #0033ff;
+            background-color: #111;
+            color: #888;
             font-size: 24px;
             font-weight: bold;
             padding: 20px;
@@ -29,9 +29,9 @@
         }
 
         .footer {
-            background-color: #000;
-            color: #ff0000; /* 紅色字體 */
-            font-family: "標楷體", "Times New Roman", serif;
+            background-color: #111;
+            color: #aaa; /* 紅色字體 */
+            font-family: "Segoe Script", cursive;
             font-size: 24px;
             padding: 10px 20px;
             border-radius: 5px;
@@ -58,6 +58,13 @@
 
         h2 {
             margin-bottom: 20px;
+            color: #aaa;
+            font-size: 28px;
+        }
+
+        label {
+            color: #ccc;
+            font-size: 18px;
         }
 
         input[type="text"],
@@ -66,18 +73,18 @@
             width: calc(100% - 20px);
             padding: 10px;
             margin: 8px 0;
-            border: 1px solid #ccc;
+            border: 1px solid #444;
             border-radius: 4px;
             box-sizing: border-box;
             font-size: 16px;
-            background-color: #f0f0f0;
-            color: #333;
+            background-color: #333;
+            color: #ccc;
         }
 
         input[type="submit"] {
             width: 100%;
-            background-color: #4CAF50;
-            color: white;
+            background-color: #555;
+            color: #eee;
             padding: 10px 20px;
             margin: 8px 0;
             border: none;
@@ -87,11 +94,11 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #666;
         }
 
         #error {
-            color: #ff0000;
+            color: #ff6666;
             font-size: 14px;
             margin-top: 10px;
             display: none; /* 預設隱藏 */
@@ -198,33 +205,25 @@
                 case "鉅城":
                     window.location.href = "https://ag.ofa77.net/login.php";
                     break;
-                case "
+                case "雄厚":
+                    window.location.href = "https://agent.918ofa.net/login.php";
+                    break;
+                case "好玩":
+                    window.location.href = "https://example.com/haowan";
+                    break;
+                case "昊陽":
+                    window.location.href = "https://example.com/haoyang";
+                    break;
+                case "AF":
+                    window.location.href = "https://example.com/af";
+                    break;
+                case "V7":
+                    window.location.href = "https://example.com/v7";
+                    break;
+            }
+        });
+    </script>
+</body>
 
-            break;
-        case "好玩":
-            window.location.href = "https://example.com/haowan";
-            break;
-        case "昊陽":
-            window.location.href = "https://example.com/haoyang";
-            break;
-        case "AF":
-            window.location.href = "https://example.com/af";
-            break;
-        case "V7":
-            window.location.href = "https://example.com/v7";
-            break;
-        default:
-            break;
-    }
-});
-
-// 記錄開始時間
-document.getElementById("username").addEventListener("focus", function() {
-    startTime = Date.now(); // 獲取焦點時記錄開始時間
-});
-
-// 當選擇的平台變化時，重置錯誤訊息
-document.getElementById("platform").addEventListener("change", function() {
-    document.getElementById("error").textContent = "";
-});
+</html>
 
