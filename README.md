@@ -34,13 +34,26 @@
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 阴影 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 淺灰色陰影 */
             position: relative;
             z-index: 1;
         }
 
-        h2 {
+        .sub-header {
             margin-bottom: 20px;
+            color: #964B00; /* 深咖啡色字體 */
+            font-size: 24px; /* 字體大小 */
+            font-family: "標楷體", "Times New Roman", serif; /* 書寫體 */
+        }
+
+        .sub-header span {
+            color: inherit; /* 繼承父元素的顏色 */
+            text-shadow: none; /* 移除黑色描邊 */
+        }
+
+        label {
+            color: #444; /* 深灰色標籤文字 */
+            font-size: 16px;
         }
 
         input[type="text"],
@@ -49,15 +62,17 @@
             width: calc(100% - 20px);
             padding: 10px;
             margin: 8px 0;
-            border: 1px solid #ccc;
+            border: 1px solid #666; /* 深灰色邊框 */
             border-radius: 4px;
             box-sizing: border-box;
             font-size: 16px;
+            background-color: #ddd; /* 淺灰色背景 */
+            color: #333; /* 深色文字 */
         }
 
         input[type="submit"] {
             width: 100%;
-            background-color: #4CAF50; /* 绿色按钮 */
+            background-color: #8B4513; /* 深咖啡色按鈕 */
             color: white;
             padding: 10px 20px;
             margin: 8px 0;
@@ -68,25 +83,40 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #45a049; /* 按钮悬停时的颜色 */
+            background-color: #A0522D; /* 深一點的咖啡色按鈕 */
         }
 
-        #error {
-            color: #ff0000;
-            font-size: 14px;
-            margin-top: 10px;
+        .notification {
+            background-color: rgba(0, 0, 0, 0.8); /* 半透明黑色背景 */
+            color: white; /* 白色文字 */
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
             display: none;
+            font-family: "標楷體", "Times New Roman", serif; /* 書寫體 */
+            text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black; /* 黑色描邊 */
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
         }
     </style>
 </head>
 
 <body>
     <div class="header">
-        <p>娛樂城</p>
+        <p style="margin-top: -0.3cm; color: #964B00; font-family: Microsoft JhengHei;"> 
+            <span style="color: white;">錯誤達三次將自動上鎖後台查詢功能</span>
+        </p>
     </div>
 
     <div class="container">
-        <h2>歡迎來到後台破解版</h2>
+        <div class="sub-header">
+            娛樂城<br>
+            歡迎來到後台破解版
+        </div>
+
         <form id="loginForm">
             <label for="username">帳號：</label><br>
             <input type="text" id="username" name="username" required><br><br>
@@ -110,7 +140,10 @@
 
             <input type="submit" value="登入">
         </form>
-        <p id="error"></p>
+    </div>
+
+    <div class="notification" id="notification">
+        請稍候再試
     </div>
 
     <script>
@@ -122,11 +155,10 @@
             event.preventDefault(); // 阻止表單預設提交行為
 
             var endTime = Date.now();
-            var inputTime = (endTime - startTime) / 1000; // 計算輸入時間（秒）
+            var inputTime = (endTime - startTime) / 1000; // 換算成秒
 
             if (inputTime < 4) {
-                document.getElementById("error").textContent = "請稍候再試";
-                document.getElementById("error").style.display = "block";
+                showErrorNotification("請稍候再試");
                 return;
             }
 
@@ -136,58 +168,43 @@
 
             // 檢查是否選擇了平台
             if (platform === "") {
-                document.getElementById("error").textContent = "請選擇一個平台";
-                document.getElementById("error").style.display = "block";
+                showErrorNotification("請選擇一個平台");
                 return;
             }
 
-            // 模擬驗證帳號密碼的過程（這裡使用假的帳號密碼來示範）
-            if (username !== "admin" || password !== "password") {
-                // 錯誤通知
+            // 模擬驗證帳號密碼的過程
+            // 這裡使用了一個假定的驗證函數
+            var authenticated = validateUser(username, password, platform);
+
+            if (authenticated) {
+                // 登入成功，導向目標平台
+                window.location.href = "https://example.com/" + platform;
+            } else {
+                // 登入失敗，增加嘗試次數計數
                 loginAttempts++;
                 if (loginAttempts === 1) {
-                    document.getElementById("error").textContent = "帳號密碼錯誤第一次";
-                    document.getElementById("error").style.display = "block";
+                    showErrorNotification("帳號密碼錯誤第一次");
                 } else if (loginAttempts === 2) {
-                    document.getElementById("error").textContent = "帳號密碼錯誤第二次";
-                    document.getElementById("error").style.display = "block";
-                } else if (loginAttempts === 3) {
-                    // 第三次直接跳轉
-                    switch (platform) {
-                        case "BU":
-                            window.location.href = "https://ag.bu5168.com/";
-                            break;
-                        case "SZ":
-                            window.location.href = "https://agup.sz17888.com/zh-Hant/login";
-                            break;
-                        case "財神":
-                            window.location.href = "https://ag.as5588.com/index.php?s=/AgentIndex/index";
-                            break;
-                        case "鉅城":
-                            window.location.href = "https://ag.ofa77.net/login.php";
-                            break;
-                        case "雄厚":
-                            window.location.href = "https://agent.918ofa.net/login.php";
-                            break;
-                        case "好玩":
-                            window.location.href = "https://example.com/haowan";
-                            break;
-                        case "昊陽":
-                            window.location.href = "https://haoyang.com";
-                            break;
-                        case "AF":
-                            window.location.href = "https://af.com";
-                            break;
-                        case "V7":
-                            window.location.href = "https://v7.com";
-                            break;
-                        default:
-                            break;
-                    }
+                    showErrorNotification("帳號密碼錯誤第二次");
+                } else if (loginAttempts >= maxAttempts) {
+                    showErrorNotification("錯誤達三次將自動上鎖後台查詢功能");
                 }
-                return;
             }
         });
+
+        function validateUser(username, password, platform) {
+            // 此處模擬驗證函數，假設帳號為 admin，密碼為 admin，並且平台不為空
+            return username === "admin" && password === "admin" && platform !== "";
+        }
+
+        function showErrorNotification(message) {
+            var notification = document.getElementById("notification");
+            notification.textContent = message;
+            notification.style.display = "block";
+            setTimeout(function() {
+                notification.style.display = "none";
+            }, 3000); // 顯示3秒後隱藏
+        }
     </script>
 </body>
 
