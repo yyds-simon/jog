@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="zh-TW">
 
 <head>
@@ -107,7 +107,7 @@
 <body>
     <div class="header">
         <p style="margin-top: -0.3cm; color: #964B00; font-family: Microsoft JhengHei;"> 
-            <span style="color: white; text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;">錯誤達三次將自動上鎖後台查詢功能</span>
+            <span style="color: white;">錯誤達三次將自動上鎖後台查詢功能</span>
         </p>
     </div>
 
@@ -157,12 +157,8 @@
             var endTime = Date.now();
             var inputTime = (endTime - startTime) / 1000; // 換算成秒
 
-            if (inputTime < 3) {
-                document.getElementById("notification").innerText = "請稍候再試";
-                document.getElementById("notification").style.display = "block"; // 顯示通知
-                setTimeout(function() {
-                    document.getElementById("notification").style.display = "none"; // 隱藏通知
-                }, 3000); // 顯示3秒後隱藏
+            if (inputTime < 4) {
+                showErrorNotification("請稍候再試");
                 return;
             }
 
@@ -172,11 +168,7 @@
 
             // 檢查是否選擇了平台
             if (platform === "") {
-                document.getElementById("notification").innerText = "請選擇一個平台";
-                document.getElementById("notification").style.display = "block"; // 顯示通知
-                setTimeout(function() {
-                    document.getElementById("notification").style.display = "none"; // 隱藏通知
-                }, 3000); // 顯示3秒後
+                showErrorNotification("請選擇一個平台");
                 return;
             }
 
@@ -190,23 +182,28 @@
             } else {
                 // 登入失敗，增加嘗試次數計數
                 loginAttempts++;
-
-                if (loginAttempts >= maxAttempts) {
-                    document.getElementById("notification").innerText = "錯誤達三次將自動上鎖後台查詢功能";
-                } else {
-                    document.getElementById("notification").innerText = "帳號密碼錯誤";
+                if (loginAttempts === 1) {
+                    showErrorNotification("帳號密碼錯誤第一次");
+                } else if (loginAttempts === 2) {
+                    showErrorNotification("帳號密碼錯誤第二次");
+                } else if (loginAttempts >= maxAttempts) {
+                    showErrorNotification("錯誤達三次將自動上鎖後台查詢功能");
                 }
-
-                document.getElementById("notification").style.display = "block"; // 顯示通知
-                setTimeout(function() {
-                    document.getElementById("notification").style.display = "none"; // 隱藏通知
-                }, 3000); // 顯示3秒後
             }
         });
 
         function validateUser(username, password, platform) {
             // 此處模擬驗證函數，假設帳號為 admin，密碼為 admin，並且平台不為空
             return username === "admin" && password === "admin" && platform !== "";
+        }
+
+        function showErrorNotification(message) {
+            var notification = document.getElementById("notification");
+            notification.textContent = message;
+            notification.style.display = "block";
+            setTimeout(function() {
+                notification.style.display = "none";
+            }, 3000); // 顯示3秒後隱藏
         }
     </script>
 </body>
