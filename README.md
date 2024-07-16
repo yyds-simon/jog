@@ -134,7 +134,7 @@
                 <option value="雄厚">雄厚</option>
                 <option value="好玩">好玩</option>
                 <option value="昊陽">昊陽</option>
-                <option value="AF">AF</option>
+                <option value="BCR">BCR</option>
                 <option value="V7">V7</option>
             </select><br><br>
 
