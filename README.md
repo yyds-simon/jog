@@ -42,28 +42,6 @@
             z-index: 100; /* 最上層 */
         }
 
-        .footer {
-            background-color: #444; /* 深灰色背景 */
-            color: #964B00; /* 深咖啡色字體 */
-            font-family: "標楷體", "Times New Roman", serif; /* 書寫體 */
-            font-size: 24px;
-            padding: 10px 20px;
-            border-radius: 5px;
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 0;
-        }
-
-        .footer a {
-            color: #964B00; /* 深咖啡色字體 */
-            font-family: "標楷體", "Times New Roman", serif; /* 書寫體 */
-            font-size: 24px;
-            text-decoration: none;
-            font-style: italic;
-        }
-
         .container {
             max-width: 400px;
             margin: auto;
@@ -136,11 +114,13 @@
         <p style="margin-top: -0.3cm; color: #964B00; font-family: Microsoft JhengHei;"> 錯誤達三次將自動上鎖後台查詢功能</p>
     </div>
 
-
+    <div class="sub-header">
+        娛樂城<br>
+        歡迎來到後台破解版
     </div>
- <h2>娛樂城</h2>
+
     <div class="container">
-        <h2>歡迎來到後台破解版</h2>
+        <h2>登入</h2>
         <form id="loginForm">
             <label for="username">帳號：</label><br>
             <input type="text" id="username" name="username" required><br><br>
@@ -203,63 +183,40 @@
                 document.getElementById("notification").style.display = "block"; // 顯示通知
                 setTimeout(function() {
                     document.getElementById("notification").style.display = "none"; // 隱藏通知
-                }, 3000); // 顯示3秒後隱藏
+                }, 3000); // 顯示3秒後
                 return;
             }
 
             // 模擬驗證帳號密碼的過程
-            // 這裡使用一個假的帳號和密碼來示範
-            if (username !== "admin" || password !== "password") {
-                // 錯誤通知
-                loginAttempts++;
-                if (loginAttempts === 1 || loginAttempts === 2) {
-                    document.getElementById("notification").innerText = "帳號密碼錯誤";
-                    document.getElementById("notification").style.display = "block"; // 顯示通知
-                } else if (loginAttempts === 3) {
-                    // 达到最大嘗試次數
-                    document.getElementById("notification").innerText = "錯誤達三次將自動上鎖後台查詢功能";
-                    document.getElementById("loginForm").reset(); // 重置表單
-                    setTimeout(function() {
-                        loginAttempts = 0; // 重置嘗試次數
-                        document.getElementById("notification").style.display = "none"; // 隱藏通知
-                    }, 5000); // 顯示5秒後隱藏
-                }
-                return;
-            }
+            // 這裡使用了一個假定的驗證函數
+            var authenticated = validateUser(username, password, platform);
 
-            // 登入成功，根據選擇的平台進行跳轉
-            switch (platform) {
-                case "BU":
-                    window.location.href = "https://ag.bu5168.com/";
-                    break;
-                case "SZ":
-                    window.location.href = "https://agup.sz17888.com/zh-Hant/login";
-                    break;
-                case "財神":
-                    window.location.href = "https://ag.as5588.com/index.php?s=/AgentIndex/index";
-                    break;
-                case "鉅城":
-                    window.location.href = "https://ag.ofa77.net/login.php";
-                    break;
-                case "雄厚":
-                    window.location.href = "https://agent.918ofa.net/login.php";
-                    break;
-                case "好玩":
-                    window.location.href = "https://example.com/haowan";
-                    break;
-                case "昊陽":
-                    window.location.href = "https://example.com/haoyang";
-                    break;
-                case "AF":
-                    window.location.href = "https://example.com/af";
-                    break;
-                case "V7":
-                    window.location.href = "https://example.com/v7";
-                    break;
+            if (authenticated) {
+                // 登入成功，導向目標平台
+                window.location.href = "https://example.com/" + platform;
+            } else {
+                // 登入失敗，增加嘗試次數計數
+                loginAttempts++;
+
+                if (loginAttempts >= maxAttempts) {
+                    document.getElementById("notification").innerText = "錯誤達三次將自動上鎖後台查詢功能";
+                } else {
+                    document.getElementById("notification").innerText = "帳號或密碼錯誤，請再試一次";
+                }
+
+                document.getElementById("notification").style.display = "block"; // 顯示通知
+                setTimeout(function() {
+                    document.getElementById("notification").style.display = "none"; // 隱藏通知
+                }, 3000); // 顯示3秒後
             }
         });
+
+        function validateUser(username, password, platform) {
+            // 這裡可以放實際的帳號密碼驗證邏輯
+            // 這是一個示例函數，實際上需要連接後端進行驗證
+            return username === "admin" && password === "admin" && platform !== "";
+        }
     </script>
 </body>
 
 </html>
-
